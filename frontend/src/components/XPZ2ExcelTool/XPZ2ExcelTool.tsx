@@ -1,8 +1,10 @@
 import { useState } from "react";
 import FileDrop from "../FileDrop/FileDropProps";
+import { useNoti } from "../Notification/NotiProvider";
 
 export default function XPZ2ExcelTool() {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const noti = useNoti();
 
     // Xử lý khi click button
     const handleProcess = () => {
@@ -10,8 +12,6 @@ export default function XPZ2ExcelTool() {
             alert("Hãy chọn file trước!");
             return;
         }
-        // Thực hiện xử lý file ở đây
-        console.log("Xử lý file: ", selectedFile);
     };
     return (
         <div className="p-6">
@@ -32,7 +32,12 @@ export default function XPZ2ExcelTool() {
                 </div>
             </div>
 
-            <FileDrop onFileSelected={setSelectedFile} />
+            <FileDrop onFileSelected={file => {
+                if (file) {
+                    setSelectedFile(file);
+                    noti.success("Tải file thành công!", `Đã upload file ${file.name}`);
+                }
+            }} />
 
             <div className="flex flex-col gap-3 max-w-md">
                 <button

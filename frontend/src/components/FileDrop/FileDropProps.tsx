@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useNoti } from "../Notification/NotiProvider";
 
 interface FileDropProps {
   onFileSelected: (file: File | null) => void;
@@ -8,6 +9,7 @@ export default function FileDrop({ onFileSelected }: FileDropProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const noti = useNoti();
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -40,6 +42,7 @@ export default function FileDrop({ onFileSelected }: FileDropProps) {
     setSelectedFile(null);
     inputRef.current!.value = "";
     onFileSelected(null);
+    noti.info("Đã xoá file", "Bạn có thể tải lên file mới nếu cần.");
   };
 
   return (
