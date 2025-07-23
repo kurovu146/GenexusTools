@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ToolTabBar } from "./components/ToolTabBar/ToolTabBar";
 import XPZ2ExcelTool from "./components/XPZ2ExcelTool/XPZ2ExcelTool";
@@ -22,7 +22,7 @@ export default function App() {
       <ToolTabBar activeTool={activeTool} onSelectTool={setActiveTool} />
       <span className="neon-text flex items-center gap-1">
         <svg className="w-5 h-5 inline-block text-cyan-400" /* icon file SVG */ />
-        Hướng dẫn sử dụng
+        📄 Hướng dẫn sử dụng
       </span>
       <div className="bg-white p-6 rounded-xl mt-4 shadow-lg min-h-[320px] transition-all duration-200">
         <AnimatePresence mode="wait">

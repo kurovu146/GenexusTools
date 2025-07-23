@@ -70,7 +70,7 @@ export const ToolTabBar: React.FC<TabBarProps> = ({ activeTool, onSelectTool }) 
           onMouseLeave={() => setHovered(null)}
         >
           <button
-            className={`px-6 py-2 font-bold rounded-lg border-2 shadow transition-all focus:outline-none min-w-[170px] ${groupClass(group.key)}`}
+            className={`px-6 py-2 font-bold rounded-lg border-2 shadow transition-all focus:outline-none min-w-[170px] cursor-pointer ${groupClass(group.key)}`}
             type="button"
           >
             {group.label}
