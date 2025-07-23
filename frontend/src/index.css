@@ -1,3 +1,4 @@
+@import "tailwindcss";
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -13,6 +14,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -23,8 +28,6 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -65,4 +68,51 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+@keyframes blinkTextGlow {
+  0%, 100% {
+    opacity: 1;
+    text-shadow:
+      -1px -1px 1px #0077aa,
+       1px -1px 1px #0077aa,
+      -1px  1px 1px #0077aa,
+       1px  1px 1px #0077aa,
+       0    0   2px #0077aa,
+       0 0 8px #00ffff,
+       0 0 16px #00ccff,
+       0 0 24px #0099cc;
+  }
+  50% {
+    opacity: 0.85;
+    text-shadow:
+      -1px -1px 1px #005577,
+       1px -1px 1px #005577,
+      -1px  1px 1px #005577,
+       1px  1px 1px #005577,
+       0    0   2px #005577,
+       0 0 6px #00eaff,
+       0 0 12px #00bbff;
+  }
+
+}
+
+.neon-text {
+  background: none;
+  border: none;
+  font-size: 17px;
+  font-weight: bold;
+  color: #00ffff;
+  text-shadow:
+    -1px -1px 1px #0077aa,
+     1px -1px 1px #0077aa,
+    -1px  1px 1px #0077aa,
+     1px  1px 1px #0077aa,
+     0    0   2px #0077aa,
+     0 0 8px #00ffff,
+     0 0 16px #00ccff,
+     0 0 24px #0099cc;
+  animation: blinkTextGlow 0.8s infinite;
+  cursor: pointer;
+
 }
