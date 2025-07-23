@@ -79,7 +79,7 @@ export const ToolTabBar: React.FC<TabBarProps> = ({ activeTool, onSelectTool }) 
             <div
               className={`
                 absolute left-0 top-full bg-white rounded-xl shadow-2xl z-30
-                min-w-[240px] py-2 animate-fadeDropdown
+                min-w-[240px] py-2
               `}
             >
               {group.tools.map(tool => (
