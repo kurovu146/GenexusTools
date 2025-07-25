@@ -1,0 +1,12 @@
+{
+  "name": "genexus-tools-monorepo",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"yarn --cwd frontend dev\" \"yarn --cwd backend dev\"",
+    "frontend": "yarn --cwd frontend dev",
+    "backend": "yarn --cwd backend dev"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}

@@ -9,7 +9,7 @@ const renderToolContent = (tool: string) => {
       return <XPZ2ExcelTool />;  // <-- Show giao diện đúng khi chọn tool này
     // ... các case khác
     default:
-      return <div>Chọn một tool để bắt đầu!</div>;
+      return <XPZ2ExcelTool />;
   }
 };
 
@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-8" style={{ width: '1200px' }}>
-      <h1 className="text-2xl font-bold mb-6 text-left">Genexus Tools</h1>
+      <h1 className="text-2xl font-bold mb-6 text-left" style={{ color: '#1884FF' }}>Genexus Tools</h1>
       <ToolTabBar activeTool={activeTool} onSelectTool={setActiveTool} />
       <span className="neon-text flex items-center gap-1">
         <svg className="w-5 h-5 inline-block text-cyan-400" /* icon file SVG */ />
