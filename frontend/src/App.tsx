@@ -1,13 +1,15 @@
-import { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ToolTabBar } from "./components/ToolTabBar/ToolTabBar";
 import XPZ2ExcelTool from "./components/XPZ2ExcelTool/XPZ2ExcelTool";
+const Excel2TxtTool = React.lazy(() => import("./components/Excel2TxtTool/Excel2TxtTool"));
 
 const renderToolContent = (tool: string) => {
   switch (tool) {
     case "xpz2excel":
       return <XPZ2ExcelTool />;  // <-- Show giao diện đúng khi chọn tool này
-    // ... các case khác
+    case "excel2txt":
+      return <Excel2TxtTool />;
     default:
       return <XPZ2ExcelTool />;
   }
@@ -33,7 +35,11 @@ export default function App() {
             exit={{ opacity: 0, x: 8 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
           >
-            {renderToolContent(activeTool)}
+            {
+              <Suspense fallback={<div>Đang tải...</div>}>
+                {renderToolContent(activeTool)}
+              </Suspense>
+            }
           </motion.div>
         </AnimatePresence>
       </div>
