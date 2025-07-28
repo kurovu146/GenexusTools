@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNoti } from "../components/Notification/NotiProvider";
+import { useNoti } from "@contexts/NotiContext";
 
 export default function Login() {
   const [username, setUsername] = useState("");

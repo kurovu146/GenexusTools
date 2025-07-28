@@ -1,8 +1,8 @@
 import { useState } from "react";
 import * as XLSX from "xlsx";
-import { useNoti } from "../Notification/NotiProvider";
-import FileDrop from "../FileDrop/FileDropProps";
-import { useLoading } from "../Loading/LoadingProvider";
+import FileDrop from "../../components/FileDrop/FileDrop";
+import { useNoti } from "@contexts/NotiContext";
+import { useLoading } from "@contexts/LoadingContext";
 
 export default function Excel2TxtTool() {
     const [excelFile, setExcelFile] = useState<File | null>(null);

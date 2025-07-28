@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
-import Noti from "./Notification";
+import Noti from "@components/Notification";
 import { AnimatePresence, motion } from "framer-motion";
 
 type NotiType = "success" | "error" | "info" | "warning";

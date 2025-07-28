@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
-import Loading from "./Loading";
+import Loading from "@components/Loading";
 
 type LoadingContextProps = {
   show: () => void;

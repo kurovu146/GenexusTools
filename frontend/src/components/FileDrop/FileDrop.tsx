@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useNoti } from "../Notification/NotiProvider";
+import { useNoti } from "@contexts/NotiContext";
 
 interface FileDropProps {
   onFileSelected: (file: File | null) => void;

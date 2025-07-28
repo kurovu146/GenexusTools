@@ -1,6 +1,6 @@
 import { useState } from "react";
-import FileDrop from "../FileDrop/FileDropProps";
-import { useNoti } from "../Notification/NotiProvider";
+import FileDrop from "../../components/FileDrop/FileDrop";
+import { useNoti } from "@contexts/NotiContext";
 
 export default function XPZ2ExcelTool() {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
