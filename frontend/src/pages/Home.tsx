@@ -1,11 +1,11 @@
 import React, { Suspense, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ToolTabBar } from "../components/ToolTabBar/ToolTabBar";
-import XPZ2ExcelTool from "../features/XPZ2ExcelTool/XPZ2ExcelTool";
+import { ToolTabBar } from "@components/ToolTabBar/ToolTabBar";
+import XPZ2ExcelTool from "@features/XPZ2ExcelTool/XPZ2ExcelTool";
 import GuideModal from "@components/GuideModal/GuideModal";
 import Loading from "@components/Loading";
-const Excel2TxtTool = React.lazy(() => import("../features/Excel2TxtTool/Excel2TxtTool"));
-const AIChatTool = React.lazy(() => import("../features/AIChatTool/AIChatTool")); 
+const Excel2TxtTool = React.lazy(() => import("@features/Excel2TxtTool/Excel2TxtTool"));
+const AIChatTool = React.lazy(() => import("@features/AIChatTool/AIChatTool")); 
 
 const renderToolContent = (tool: string) => {
   switch (tool) {

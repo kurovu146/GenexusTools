@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import styles from "./AiChatTool.module.css";
+import styles from "./AIChatTool.module.css";
 
 interface Message {
     id: string;
@@ -98,7 +98,6 @@ export default function AIChatTool() {
                         ].join(" ")}
                     >
                         <div style={{ display: "flex", flexDirection: "column", alignItems: msg.role === "user" ? "flex-end" : "flex-start" }}>
-                            {/* Ảnh ở trên (nếu có) */}
                             {msg.imageUrl && (
                                 <img
                                     src={msg.imageUrl}
@@ -112,8 +111,6 @@ export default function AIChatTool() {
                                     title="Bấm để phóng to"
                                 />
                             )}
-
-                            {/* Text ở dưới */}
                             <span
                                 className={[
                                     styles.aiChatBubble,
@@ -159,6 +156,14 @@ export default function AIChatTool() {
                         onPaste={handlePaste}
                         placeholder="Hỏi bất kỳ điều gì"
                         className={styles.aiChatTextarea}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" && !e.shiftKey) {
+                                e.preventDefault(); // Ngăn xuống dòng
+                                if (input.trim() || image) {
+                                    handleSend();
+                                }
+                            }
+                        }}
                     />
                     <button
                         onClick={handleSend}
