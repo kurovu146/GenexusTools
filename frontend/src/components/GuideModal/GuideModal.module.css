@@ -1,0 +1,153 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 32px #0002;
+    max-width: 70%;
+    width: 95vw;
+    /* Thêm 2 dòng này: */
+    height: 60%;
+    /* hoặc 350px, 420px... tùy ý bạn */
+    min-height: 60%;
+    /* cùng giá trị height */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    animation: fadeIn 0.2s;
+}
+
+.body {
+    display: flex;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-height: 0;
+    max-height: unset;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 2px;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 8px;
+    right: 14px;
+    color: rgba(221, 0, 0, 0.55);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 2px 8px;
+    line-height: 1;
+    transition: background 0.1s;
+}
+
+.closeBtn:hover {
+    color: rgba(221, 0, 0, 1);
+}
+
+.header h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.18rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.body {
+  flex: 1 1 auto;
+  overflow-y: hidden;
+  overflow-x: hidden;  /* thêm dòng này */
+  min-height: 0;
+  padding-bottom: 2px;
+  position: relative;  /* rất quan trọng cho absolute con */
+}
+
+.img {
+    max-width: 90%;
+    height: 400px;
+    /* hoặc 160px, tùy chiều cao modal */
+    border-radius: 7px;
+    box-shadow: 0 1px 8px #0002;
+    border: 1px solid #ececec;
+    display: block;
+    margin: 12px auto 0 auto;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer button {
+    border: none;
+    background: #eee;
+    color: #333;
+    border-radius: 9px;
+    padding: 6px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.18s;
+}
+
+.footer button:disabled {
+    background: #f8f8f8;
+    color: #bbb;
+    cursor: not-allowed;
+}
+
+.stepLabel {
+    color: #888;
+    font-size: 1rem;
+    min-width: 55px;
+    text-align: center;
+}
+
+.stepDots {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    min-width: 70px;
+    height: 16px;
+    margin: 0 4px;
+}
+
+.stepDot {
+    width: 13px;
+    height: 13px;
+    background: #ddd;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background 0.16s;
+}
+
+.stepDot.active {
+    background: #2563eb;
+    box-shadow: 0 0 0 5px #e6edfd;
+    z-index: 2;
+    left: 0;
+    top: 0;
+}
