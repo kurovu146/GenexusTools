@@ -8,9 +8,9 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={
-          // <RequireAuth>
+          <RequireAuth>
             <Home />
-          // </RequireAuth>
+          </RequireAuth>
         } />
         <Route path="/login" element={<Login />} />
       </Routes>

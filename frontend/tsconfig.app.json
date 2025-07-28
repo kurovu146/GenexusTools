@@ -28,7 +28,8 @@
       "@components/*": ["components/*"],
       "@features/*": ["features/*"],
       "@contexts/*": ["contexts/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@api/*": ["api/*"]
     }
   },
   "include": ["src"]

@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { useNoti } from "@contexts/NotiContext";
+import { loginApi } from "@api/authApi";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useUser } from "@contexts/UserContext";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const noti = useNoti();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = (location.state as any)?.from?.pathname || "/";
+  const { login } = useUser();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,15 +22,15 @@ export default function Login() {
     }
     setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-      if (username === "admin" && password === "123456") {
-        noti.success("Đăng nhập thành công!");
-        // TODO: Chuyển hướng sang trang chính
-      } else {
-        noti.error("Sai tài khoản hoặc mật khẩu!");
-      }
-    }, 1000);
+    const res = await loginApi({ username, password, system: "LOWCODE" });
+    setLoading(false);
+    if (res.code === 200) {
+      noti.success("Đăng nhập thành công!");
+      login(res.user, res.token);
+      navigate(from || "/", { replace: true });
+    } else {
+      noti.error("Sai tài khoản hoặc mật khẩu!");
+    }
   };
 
   return (

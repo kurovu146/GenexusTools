@@ -25,29 +25,37 @@ export class AuthService {
       throw new UnauthorizedException('Sai tài khoản hoặc mật khẩu!');
     }
 
-    const data = response.data.data;
-    const email = data.email;
-    const name = data.name;
-    const lastUpdated = new Date(data.updatedAt);
+    if (response.data.success) {
+      const data = response.data.data;
+      const email = data.email;
+      const name = data.name;
+      const lastUpdated = new Date(data.updatedAt);
+      const token = response.data.token;
 
-    let user = await this.prisma.user.findFirst({
-      where: {
-        OR: [
-          { email },
-        ],
-      },
-    });
-
-    if (!user) {
-      user = await this.prisma.user.create({
-        data: {
-          email,
-          name,
-          lastUpdated
+      let user = await this.prisma.user.findFirst({
+        where: {
+          OR: [
+            { email },
+          ],
         },
       });
-    }
 
-    return response.data;
+      if (!user) {
+        user = await this.prisma.user.create({
+          data: {
+            email,
+            name,
+            lastUpdated
+          },
+        });
+      }
+
+      return {
+        code: 200,
+        message: 'Đăng nhập thành công!',
+        user,
+        token
+      };
+    }
   }
 }

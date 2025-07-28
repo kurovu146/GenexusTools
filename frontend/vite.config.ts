@@ -15,6 +15,8 @@ export default defineConfig({
       { find: '@features', replacement: resolve(__dirname, 'src/features') },
       { find: '@contexts', replacement: resolve(__dirname, 'src/contexts') },
       { find: '@pages', replacement: resolve(__dirname, 'src/pages') },
+      { find: '@api', replacement: resolve(__dirname, 'src/api') },
     ]
-  }
+  },
+  envDir: "../", 
 });
