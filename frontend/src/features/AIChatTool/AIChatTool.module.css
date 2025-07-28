@@ -1,0 +1,179 @@
+/* AiChatTool.module.css */
+
+.aiChatToolRoot {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    min-height: 0;
+    margin: 0;
+    /* hoặc margin-top nếu muốn cách trên */
+    border-radius: 0;
+    /* hoặc giữ border-radius nếu thích bo góc */
+    box-shadow: 0 2px 18px 0 #0001;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eee;
+}
+
+.aiChatImageModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1002;
+  cursor: zoom-out;
+}
+
+.aiChatImageModalImg {
+  max-width: 94vw;
+  max-height: 94vh;
+  border-radius: 14px;
+  box-shadow: 0 2px 24px #0006;
+  background: #fff;
+  padding: 2px;
+  outline: 2px solid #fff;
+}
+
+
+.aiChatMessages {
+    flex: 1;
+    padding: 20px 24px 12px 24px;
+    overflow-y: auto;
+    border-bottom: 1px solid #eee;
+    min-height: 120px;
+    max-height: 340px;
+}
+
+.aiChatMessageRow {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 12px;
+}
+
+.aiChatMessageRow.user {
+    flex-direction: row-reverse;
+}
+
+.aiChatAvatarImg {
+    max-width: 500px;
+    max-height: 500px;
+    margin-right: 8px;
+    margin-left: 0;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.aiChatMessageRow.user .aiChatAvatarImg {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+.aiChatBubble {
+    background: #f3f3f5;
+    padding: 10px 14px;
+    border-radius: 12px;
+    display: inline-block;
+    max-width: 340px;
+    white-space: pre-line;
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.aiChatBubble.user {
+    background: #d1e7fd;
+}
+
+.aiChatInputBox {
+    padding: 12px 18px;
+    position: relative;
+    border-top: 1px solid #eee;
+    background: #fcfcfc;
+    border-radius: 0 0 20px 20px;
+}
+
+.aiChatImagePreviewContainer {
+    position: absolute;
+    left: 18px;
+    top: -58px;
+    z-index: 3;
+}
+
+.aiChatImagePreviewBox {
+    position: relative;
+    display: inline-block;
+    box-shadow: 0 2px 8px #0001;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.aiChatImagePreviewImg {
+    max-width: 64px;
+    max-height: 56px;
+    border-radius: 10px;
+    display: block;
+    border: 1.5px solid #fff;
+}
+
+.aiChatImageRemoveBtn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: rgba(0, 0, 0, 0.75);
+    border: none;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 6px #0003;
+    transition: background 0.2s;
+    outline: none;
+}
+
+.aiChatToolbar {
+    display: flex;
+    align-items: flex-end;
+}
+
+.aiChatTextarea {
+    flex: 1;
+    resize: none;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: 10px 14px;
+    font-size: 16px;
+    min-height: 42px;
+    background: #f5f6fa;
+    margin-right: 7px;
+    box-shadow: none;
+}
+
+.aiChatSendBtn {
+    border: none;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3px;
+    cursor: pointer;
+    transition: background 0.2s;
+    opacity: 1;
+}
+
+.aiChatSendBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

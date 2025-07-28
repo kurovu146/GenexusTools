@@ -4,6 +4,7 @@ import { ToolTabBar } from "../components/ToolTabBar/ToolTabBar";
 import XPZ2ExcelTool from "../features/XPZ2ExcelTool/XPZ2ExcelTool";
 import Loading from "../components/Loading/Loading";
 const Excel2TxtTool = React.lazy(() => import("../features/Excel2TxtTool/Excel2TxtTool"));
+const AIChatTool = React.lazy(() => import("../features/AIChatTool/AIChatTool")); 
 
 const renderToolContent = (tool: string) => {
   switch (tool) {
@@ -11,6 +12,8 @@ const renderToolContent = (tool: string) => {
       return <XPZ2ExcelTool />;
     case "excel2txt":
       return <Excel2TxtTool />;
+    case "ai-chat":
+      return <AIChatTool />;
     default:
       return <XPZ2ExcelTool />;
   }

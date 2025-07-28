@@ -47,6 +47,7 @@ const toolGroups: Group[] = [
         tools: [
             { key: "translate", label: "Dịch thuật" },
             { key: "genPrompt", label: "Prompt Gen & Gợi ý" },
+            { key: "ai-chat", label: "Q&A với AI Chat" },
             // Thêm các tool AI tại đây
         ]
     }
