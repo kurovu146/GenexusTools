@@ -1,12 +1,17 @@
 import React, { useRef, useState } from "react";
 import styles from "./AIChatTool.module.css";
+import axios from "axios";
+import { BASE_URL } from "@api/authApi";
 
-interface Message {
-    id: string;
-    role: "user" | "ai";
-    content: string;
-    imageUrl?: string;
-}
+type Message = {
+    id: string; // Mỗi message sẽ có id duy nhất
+    role: "user" | "assistant";
+    content: string | Array<
+        | { type: "text"; text: string }
+        | { type: "image_url"; image_url: { url: string } }
+    >;
+    imageBase64?: string; // để hiển thị preview
+};
 
 export default function AIChatTool() {
     const [input, setInput] = useState("");
@@ -35,45 +40,19 @@ export default function AIChatTool() {
 
     const handleSend = async () => {
         if (!input.trim() && !image) return;
-
-        setMessages((msgs) => [
-            ...msgs,
-            {
-                id: Math.random().toString(36).substring(2),
-                role: "user",
-                content: input,
-                imageUrl: imagePreview || undefined,
-            },
-        ]);
+        // Khi gửi tin mới:
+        const maxHistory = 10;
         setInput("");
         setImage(null);
         setImagePreview(null);
-
-        const aiReply = await fakeAiApi(input, image);
-
-        setMessages((msgs) => [
-            ...msgs,
-            {
-                id: Math.random().toString(36).substring(2),
-                role: "ai",
-                content: aiReply,
-            },
+        const body = { messages: [...messages, { role: "user", content: input }].slice(-maxHistory) };
+        const res = await axios.post(`${BASE_URL}/runai/chat`, body);
+        setMessages([
+            ...messages,
+            { id: messages.length.toString(), role: "user", content: input },
+            { id: (messages.length + 1).toString(), role: "assistant", content: res.data.reply.content }
         ]);
     };
-
-    async function fakeAiApi(text: string, img?: File | null): Promise<string> {
-        return new Promise((resolve) =>
-            setTimeout(
-                () =>
-                    resolve(
-                        img
-                            ? `(AI đã nhận được ảnh + text: "${text}")`
-                            : `(AI trả lời: "${text}")`
-                    ),
-                1200
-            )
-        );
-    }
 
     return (
         <div className={styles.aiChatToolRoot}>
@@ -98,16 +77,16 @@ export default function AIChatTool() {
                         ].join(" ")}
                     >
                         <div style={{ display: "flex", flexDirection: "column", alignItems: msg.role === "user" ? "flex-end" : "flex-start" }}>
-                            {msg.imageUrl && (
+                            {msg.imageBase64 && (
                                 <img
-                                    src={msg.imageUrl}
+                                    src={msg.imageBase64}
                                     alt="user upload"
                                     className={[
                                         styles.aiChatAvatarImg,
                                         msg.role === "user" ? styles.user : "",
                                     ].join(" ")}
                                     style={{ margin: "0 0 4px 0", cursor: "pointer" }}
-                                    onClick={() => setZoomImage(msg.imageUrl!)}
+                                    onClick={() => setZoomImage(msg.imageBase64!)}
                                     title="Bấm để phóng to"
                                 />
                             )}
@@ -117,7 +96,32 @@ export default function AIChatTool() {
                                     msg.role === "user" ? styles.user : "",
                                 ].join(" ")}
                             >
-                                {msg.content}
+                                {typeof(msg.content) === "string" ? (
+                                    msg.content
+                                ) : (
+                                    msg.content.map((part, index) => {
+                                        if (part.type === "text") {
+                                            return part.text;
+                                        }
+                                        if (part.type === "image_url") {
+                                            return (
+                                                <img
+                                                    key={index}
+                                                    src={part.image_url.url}
+                                                    alt="user upload"
+                                                    className={[
+                                                        styles.aiChatAvatarImg,
+                                                        msg.role === "user" ? styles.user : "",
+                                                    ].join(" ")}
+                                                    style={{ margin: "0 0 4px 0", cursor: "pointer" }}
+                                                    onClick={() => setZoomImage(part.image_url.url)}
+                                                    title="Bấm để phóng to"
+                                                />
+                                            );
+                                        }
+                                        return null;
+                                    })
+                                )}
                             </span>
                         </div>
                     </div>

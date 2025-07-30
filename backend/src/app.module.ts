@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from 'prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
+import { RunaiModule } from './runai/runai.module';
 
 @Module({
   imports: [
@@ -12,7 +13,8 @@ import { AuthModule } from './auth/auth.module';
       envFilePath: ['../.env', '.env'],
     }),
     PrismaModule,
-    AuthModule
+    AuthModule,
+    RunaiModule
   ],
   controllers: [AppController],
   providers: [AppService],

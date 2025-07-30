@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Tùy cấu hình Vite/CRA, có thể dùng import.meta.env hoặc process.env
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
+export const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
 
 export async function loginApi({
   username,
